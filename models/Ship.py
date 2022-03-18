@@ -1,7 +1,7 @@
 import pygame.draw
 
-from assets import draw_rect
-from constants import WINDOW, SCREEN_WIDTH, SCREEN_HEIGHT, seconds, COLOR, ENEMY_LASER_VELOCITY
+from utils import draw_rect, seconds
+from constants import WINDOW, SCREEN_WIDTH, SCREEN_HEIGHT, COLOR, ENEMY_LASER_VELOCITY
 from models.Laser import Laser
 
 

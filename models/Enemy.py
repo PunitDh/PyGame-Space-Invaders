@@ -1,6 +1,5 @@
 import random
-from assets import ENEMY_COLOR_MAP
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT, ENEMY_COLOR_MAP
 from models.Laser import Laser
 from models.Ship import Ship
 

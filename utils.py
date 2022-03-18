@@ -1,13 +1,7 @@
-import os
 import pygame
-from constants import WINDOW, SCREEN_WIDTH, get_font, SCREEN_HEIGHT, COLOR
+from constants import WINDOW, SCREEN_WIDTH, get_font, COLOR, FPS
 
 pygame.display.set_caption("Space Shooter")
-
-
-def asset_loader(asset):
-    return pygame.image.load(os.path.join("assets", asset + ".png"))
-# end
 
 
 def draw_asset(asset, x, y, right_aligned=False):
@@ -39,25 +33,11 @@ def collide(obj1, obj2):
 # end
 
 
-# Enemy ships
-RED_SPACE_SHIP = asset_loader("pixel_ship_red_small")
-GREEN_SPACE_SHIP = asset_loader("pixel_ship_green_small")
-BLUE_SPACE_SHIP = asset_loader("pixel_ship_blue_small")
+def seconds(val):
+    return FPS * val
+# end
 
-# Player ship
-YELLOW_SPACE_SHIP = asset_loader("pixel_ship_yellow")
 
-# Lasers
-RED_LASER = asset_loader("pixel_laser_red")
-GREEN_LASER = asset_loader("pixel_laser_green")
-BLUE_LASER = asset_loader("pixel_laser_blue")
-YELLOW_LASER = asset_loader("pixel_laser_yellow")
-
-# Background
-BACKGROUND = pygame.transform.scale(asset_loader("background-black"), (SCREEN_WIDTH, SCREEN_HEIGHT))
-
-ENEMY_COLOR_MAP = {
-    "red": (RED_SPACE_SHIP, RED_LASER),
-    "green": (GREEN_SPACE_SHIP, GREEN_LASER),
-    "blue": (BLUE_SPACE_SHIP, BLUE_LASER),
-}
+def get_keys():
+    return pygame.key.get_pressed()
+# end

@@ -1,7 +1,7 @@
 import random
 import pygame
-from assets import draw_asset, BACKGROUND, draw_text, draw_text_centered, collide
-from constants import FPS, seconds, get_keys, ENEMY_VELOCITY, COLOR
+from utils import draw_asset, draw_text, draw_text_centered, collide, seconds, get_keys
+from constants import FPS, ENEMY_VELOCITY, COLOR, BACKGROUND
 from models.Enemy import Enemy
 from models.Player import Player
 
@@ -62,7 +62,7 @@ def main():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                run = False
+                quit()
             # end
         # end
 

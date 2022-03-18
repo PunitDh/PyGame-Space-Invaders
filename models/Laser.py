@@ -1,6 +1,6 @@
 import pygame.mask
 
-from assets import collide
+from utils import collide
 from constants import WINDOW, SCREEN_HEIGHT
 
 
