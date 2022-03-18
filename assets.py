@@ -1,7 +1,5 @@
 import os
-
 import pygame
-
 from constants import WINDOW, SCREEN_WIDTH, get_font, SCREEN_HEIGHT, COLOR
 
 pygame.display.set_caption("Space Shooter")

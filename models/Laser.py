@@ -20,8 +20,12 @@ class Laser:
         self.y += vel
     # end
 
-    def off_screen(self):
-        return not(0 <= self.y <= SCREEN_HEIGHT)
+    def below_screen(self):
+        return self.y >= SCREEN_HEIGHT
+    # end
+
+    def above_screen(self):
+        return self.y <= 0
     # end
 
     def collision(self, obj):

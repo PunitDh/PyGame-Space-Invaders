@@ -1,9 +1,7 @@
 import random
-
 import pygame
-
 from assets import draw_asset, BACKGROUND, draw_text, draw_text_centered, collide
-from constants import FPS, seconds, get_keys, ENEMY_VELOCITY, COLOR, LASER_VELOCITY
+from constants import FPS, seconds, get_keys, ENEMY_VELOCITY, COLOR
 from models.Enemy import Enemy
 from models.Player import Player
 
@@ -14,10 +12,9 @@ def main():
     lives = 5
     lost = False
     lost_count = 0
-    wave_length = 5
 
     clock = pygame.time.Clock()
-    player = Player(300, 650)
+    player = Player()
     current_enemies = []
 
     def redraw_window():
@@ -27,7 +24,7 @@ def main():
         player.draw()
         draw_text(f"enemies={len(current_enemies)}", 375, 50)
         if lost:
-            draw_text_centered("You lost!!!", COLOR["white"], 60)
+            draw_text_centered("You lose!!!", COLOR["white"], 60)
         # end
 
         for current_enemy in current_enemies:
@@ -56,7 +53,7 @@ def main():
 
         if len(current_enemies) == 0:
             level += 1
-            wave_length += 5
+            wave_length = level * 5
             for i in range(wave_length):
                 new_enemy = Enemy()
                 current_enemies.append(new_enemy)
@@ -80,7 +77,7 @@ def main():
 
         for enemy in current_enemies[:]:
             enemy.move(ENEMY_VELOCITY)
-            enemy.move_lasers(LASER_VELOCITY, player)
+            enemy.move_lasers(player)
 
             if random.randrange(0, seconds(4)) == 1:
                 enemy.shoot()
@@ -97,9 +94,22 @@ def main():
             # end
         # end
 
-        player.move_lasers(-LASER_VELOCITY, current_enemies)
+        player.move_lasers(current_enemies)
     # end
 # end
 
 
-main()
+def main_menu():
+    run = True
+    while run:
+        draw_text_centered("Press the mouse to begin...", COLOR["white"], 60)
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                main()
+    pygame.quit()
+
+
+main_menu()

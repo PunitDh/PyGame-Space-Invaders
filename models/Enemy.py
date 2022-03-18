@@ -1,6 +1,4 @@
 import random
-import pygame.mask
-
 from assets import ENEMY_COLOR_MAP
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from models.Laser import Laser
@@ -11,7 +9,6 @@ class Enemy(Ship):
     def __init__(self):
         random_color = random.choice(list(ENEMY_COLOR_MAP.keys()))
         self.ship_img, self.laser_img = ENEMY_COLOR_MAP[random_color]
-        self.mask = pygame.mask.from_surface(self.ship_img)
         x_value = random.randrange(self.get_width(), SCREEN_WIDTH - self.get_width())
         y_value = random.randrange(-1500, -100)
         laser_damage = random.randrange(5, 15)

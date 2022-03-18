@@ -1,7 +1,7 @@
 import pygame.draw
 
 from assets import draw_rect
-from constants import WINDOW, SCREEN_WIDTH, SCREEN_HEIGHT, seconds, COLOR
+from constants import WINDOW, SCREEN_WIDTH, SCREEN_HEIGHT, seconds, COLOR, ENEMY_LASER_VELOCITY
 from models.Laser import Laser
 
 
@@ -18,6 +18,7 @@ class Ship:
         self.cool_down_counter = 0
         self.max_health = health
         self.laser_damage = laser_damage
+        self.mask = pygame.mask.from_surface(self.ship_img)
     # end
 
     def draw(self):
@@ -28,11 +29,11 @@ class Ship:
         # end
     # end
 
-    def move_lasers(self, vel, obj):
+    def move_lasers(self, obj):
         self.cool_down()
         for laser in self.lasers:
-            laser.move(vel)
-            if laser.off_screen():
+            laser.move(ENEMY_LASER_VELOCITY)
+            if laser.below_screen():
                 self.lasers.remove(laser)
             elif laser.collision(obj):
                 obj.health -= self.laser_damage
